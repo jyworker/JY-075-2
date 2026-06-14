@@ -23,6 +23,7 @@ import java.util.Objects;
 import com.emv.qrcode.core.model.cpm.BERTLV;
 import com.emv.qrcode.core.model.cpm.BERTag;
 import com.emv.qrcode.core.model.cpm.BERTemplate;
+import com.emv.qrcode.core.utils.BERUtils;
 import com.emv.qrcode.model.cpm.constants.ConsumerPresentedModeFieldCodes;
 
 import lombok.Getter;
@@ -81,7 +82,7 @@ public class ApplicationTemplate extends AdditionalData implements BERTemplate<b
         }
 
         out.write(tag.getBytes());
-        out.write(len);
+        out.write(BERUtils.lengthOfValue(len));
         out.write(selfBytes);
         out.write(valueBytes);
 
